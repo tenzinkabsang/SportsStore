@@ -98,9 +98,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj",
-      "projectName": "SportsStore",
-      "projectPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj",
+      "projectUniqueName": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\SportsStore.Web.csproj",
+      "projectName": "SportsStore.Web",
+      "projectPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\SportsStore.Web.csproj",
       "packagesPath": "C:\\Users\\tenzi\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\obj\\",
       "projectStyle": "PackageReference",

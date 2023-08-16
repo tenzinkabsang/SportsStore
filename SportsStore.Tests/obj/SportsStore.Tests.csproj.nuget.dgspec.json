@@ -4,6 +4,67 @@
     "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Tests\\SportsStore.Tests.csproj": {}
   },
   "projects": {
+    "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Data\\SportsStore.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Data\\SportsStore.Data.csproj",
+        "projectName": "SportsStore.Data",
+        "projectPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Data\\SportsStore.Data.csproj",
+        "packagesPath": "C:\\Users\\tenzi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\tenzi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "NLog": {
+              "target": "Package",
+              "version": "[5.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Tests\\SportsStore.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -28,8 +89,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj": {
-                "projectPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj"
+              "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Data\\SportsStore.Data.csproj": {
+                "projectPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Data\\SportsStore.Data.csproj"
+              },
+              "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Web\\SportsStore.Web.csproj": {
+                "projectPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Web\\SportsStore.Web.csproj"
               }
             }
           }
@@ -85,18 +149,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj": {
+    "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Web\\SportsStore.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj",
-        "projectName": "SportsStore",
-        "projectPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\SportsStore.csproj",
+        "projectUniqueName": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Web\\SportsStore.Web.csproj",
+        "projectName": "SportsStore.Web",
+        "projectPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Web\\SportsStore.Web.csproj",
         "packagesPath": "C:\\Users\\tenzi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore\\obj\\",
+        "outputPath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tenzi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -153,7 +217,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
