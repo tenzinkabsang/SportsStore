@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "b0N3RHgtAByEhe9dsXdJIqqvLj34Bd58tZBq9n/rDDYFoIjmRhyzquzVTtXKvsfM6Tg4xTGfB++omhnrCKEmRQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tenzi\\source\\repos\\SportsStore\\SportsStore.Data\\SportsStore.Data.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tenzi\\.nuget\\packages\\nlog\\5.2.3\\nlog.5.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,12 @@
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\bin\Debug\net6.0\SportsStore.Models.deps.json
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\bin\Debug\net6.0\SportsStore.Models.dll
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\bin\Debug\net6.0\SportsStore.Models.pdb
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\obj\Debug\net6.0\SportsStore.Models.csproj.AssemblyReference.cache
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\obj\Debug\net6.0\SportsStore.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\obj\Debug\net6.0\SportsStore.Models.AssemblyInfoInputs.cache
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\obj\Debug\net6.0\SportsStore.Models.AssemblyInfo.cs
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\obj\Debug\net6.0\SportsStore.Models.csproj.CoreCompileInputs.cache
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\obj\Debug\net6.0\SportsStore.Models.dll
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\obj\Debug\net6.0\refint\SportsStore.Models.dll
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\obj\Debug\net6.0\SportsStore.Models.pdb
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Models\obj\Debug\net6.0\ref\SportsStore.Models.dll
