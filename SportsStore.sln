@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore.Web", "SportsStore.Web\SportsStore.Web.csproj", "{FF36504E-FD23-4741-90F5-12A345D1DF73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore.Web", "SportsStore.Web\SportsStore.Web.csproj", "{FF36504E-FD23-4741-90F5-12A345D1DF73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore.Tests", "SportsStore.Tests\SportsStore.Tests.csproj", "{E83021BC-E32A-4EEE-AB98-8AB48B34905A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore.Tests", "SportsStore.Tests\SportsStore.Tests.csproj", "{E83021BC-E32A-4EEE-AB98-8AB48B34905A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore.Models", "SportsStore.Models\SportsStore.Models.csproj", "{EEC6AE4A-7437-472B-AE4C-2D4867A4215C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsStore.Data", "SportsStore.Data\SportsStore.Data.csproj", "{842B4D6A-6F1A-46AC-965B-A61332CA08C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SportsStore.Data", "SportsStore.Data\SportsStore.Data.csproj", "{842B4D6A-6F1A-46AC-965B-A61332CA08C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{E83021BC-E32A-4EEE-AB98-8AB48B34905A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E83021BC-E32A-4EEE-AB98-8AB48B34905A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E83021BC-E32A-4EEE-AB98-8AB48B34905A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EEC6AE4A-7437-472B-AE4C-2D4867A4215C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEC6AE4A-7437-472B-AE4C-2D4867A4215C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEC6AE4A-7437-472B-AE4C-2D4867A4215C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEC6AE4A-7437-472B-AE4C-2D4867A4215C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{842B4D6A-6F1A-46AC-965B-A61332CA08C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{842B4D6A-6F1A-46AC-965B-A61332CA08C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{842B4D6A-6F1A-46AC-965B-A61332CA08C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
