@@ -81,3 +81,6 @@ C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\runtime
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\SportsStore.Data.dll
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\SportsStore.Data.pdb
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\nlog.config
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\NLog.Web.AspNetCore.dll

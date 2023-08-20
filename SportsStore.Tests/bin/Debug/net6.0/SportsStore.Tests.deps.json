@@ -757,6 +757,30 @@
           }
         }
       },
+      "NLog.Extensions.Logging/5.3.3": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Logging": "7.0.0",
+          "NLog": "5.2.3"
+        },
+        "runtime": {
+          "lib/net6.0/NLog.Extensions.Logging.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.3.3.381"
+          }
+        }
+      },
+      "NLog.Web.AspNetCore/5.3.3": {
+        "dependencies": {
+          "NLog.Extensions.Logging": "5.3.3"
+        },
+        "runtime": {
+          "lib/net6.0/NLog.Web.AspNetCore.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.3.3.940"
+          }
+        }
+      },
       "NuGet.Frameworks/5.11.0": {
         "runtime": {
           "lib/netstandard2.0/NuGet.Frameworks.dll": {
@@ -1550,7 +1574,8 @@
       "SportsStore.Data/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10",
-          "NLog": "5.2.3"
+          "NLog": "5.2.3",
+          "NLog.Web.AspNetCore": "5.3.3"
         },
         "runtime": {
           "SportsStore.Data.dll": {}
@@ -1560,6 +1585,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10",
           "NLog": "5.2.3",
+          "NLog.Web.AspNetCore": "5.3.3",
           "Newtonsoft.Json": "13.0.3",
           "SportsStore.Data": "1.0.0"
         },
@@ -1882,6 +1908,20 @@
       "sha512": "sha512-rHTNRtQF5qYqLutSR9ldUWXglKym/KA1R6GKw4JtDvza8i5+kgfmeKH75Ccn1noeJIOjHLXorphMxKk3EiN2tg==",
       "path": "nlog/5.2.3",
       "hashPath": "nlog.5.2.3.nupkg.sha512"
+    },
+    "NLog.Extensions.Logging/5.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-o3V1oUr0izjhU1djuVqN5JdmNUGmunTs3Amjhumt/nxva8kG9QWjOdba+ciwkP//QOjv+KkGklZtI9o4qz50hQ==",
+      "path": "nlog.extensions.logging/5.3.3",
+      "hashPath": "nlog.extensions.logging.5.3.3.nupkg.sha512"
+    },
+    "NLog.Web.AspNetCore/5.3.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ub8LOAbIGIPtv9nMAdZXlxUvszau6p2Svmeo8mhJFD+PQDMnI6PFc5IID1Jj3c1Lv8sxKVL7vRCsaWdTrmnrFw==",
+      "path": "nlog.web.aspnetcore/5.3.3",
+      "hashPath": "nlog.web.aspnetcore.5.3.3.nupkg.sha512"
     },
     "NuGet.Frameworks/5.11.0": {
       "type": "package",

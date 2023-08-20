@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 using SportsStore.Data;
 using SportsStore.Models;
 
@@ -6,6 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Logging
+builder.Host.ConfigureLogging(logging =>
+{
+    logging.ClearProviders();
+    logging.SetMinimumLevel(LogLevel.Information);
+}).UseNLog();
+
+
 
 builder.Services.AddDbContext<StoreDbContext>(opts =>
 {

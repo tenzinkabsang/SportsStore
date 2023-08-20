@@ -158,3 +158,6 @@ C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\obj\Debug\net6.0\refin
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\obj\Debug\net6.0\SportsStore.Tests.pdb
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\obj\Debug\net6.0\SportsStore.Tests.genruntimeconfig.cache
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\obj\Debug\net6.0\ref\SportsStore.Tests.dll
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\bin\Debug\net6.0\nlog.config
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\bin\Debug\net6.0\NLog.Web.AspNetCore.dll

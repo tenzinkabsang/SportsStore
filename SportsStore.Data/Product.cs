@@ -13,6 +13,8 @@ namespace SportsStore.Data
 
         public string Category { get; set; } = string.Empty;
 
+        public bool IsDeleted { get; set; }
+
     }
 
     public abstract class BaseEntity
