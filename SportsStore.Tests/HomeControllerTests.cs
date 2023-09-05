@@ -12,8 +12,9 @@ namespace SportsStore.Tests
     public class HomeControllerTests
     {
         private IConfiguration InMemoryConfig;
+
         public HomeControllerTests()
-       {
+        {
             var inMemoryAppSetting = new Dictionary<string, string> { ["WebApp:PageSize"] = "2" };
 
             InMemoryConfig = new ConfigurationBuilder().AddInMemoryCollection(inMemoryAppSetting).Build();
@@ -23,7 +24,7 @@ namespace SportsStore.Tests
         public void Can_Use_Repository()
         {
             var mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetProducts(It.IsAny<int>(), It.IsAny<int>())).Returns((2,new List<Product>
+            mock.Setup(m => m.GetProducts(It.IsAny<int>(), It.IsAny<int>())).Returns((2, new List<Product>
             {
                 new Product { Id = 1, Name = "P1"},
                 new Product { Id = 2, Name = "P2"}
@@ -32,19 +33,19 @@ namespace SportsStore.Tests
 
             HomeController controller = new HomeController(mock.Object, InMemoryConfig);
 
-            ProductListViewModel viewModel = (controller.Index() as ViewResult)?.ViewData.Model as ProductListViewModel ?? new();
+            ProductListViewModel viewModel = controller.Index()?.ViewData.Model as ProductListViewModel ?? new();
 
             //Assert
             Assert.True(viewModel.Products.Count == 2);
             Assert.Equal("P1", viewModel.Products[0].Name);
         }
 
-        [Fact] 
+        [Fact]
         public void CanGetProductById()
         {
             var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.GetProductById(It.IsAny<int>())).Returns(
-                new Product { Id = 2, Name = "PXX"}
+                new Product { Id = 2, Name = "PXX" }
             );
             HomeController controller = new HomeController(mock.Object, InMemoryConfig);
 

@@ -84,3 +84,4 @@ C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\SportsS
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\nlog.config
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\NLog.Extensions.Logging.dll
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Web\bin\Debug\net6.0\libman.json

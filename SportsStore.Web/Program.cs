@@ -43,9 +43,18 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+
+app.MapControllerRoute(
+    name: "pagination",
+    pattern: "Products/Page{page}",
+    new { Controller = "Home", action = "Index" }
+    );
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 // Seed dummy data
 //SeedData.Populate(app);

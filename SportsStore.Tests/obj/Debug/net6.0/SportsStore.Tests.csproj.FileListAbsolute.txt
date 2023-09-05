@@ -161,3 +161,4 @@ C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\obj\Debug\net6.0\ref\S
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\bin\Debug\net6.0\nlog.config
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\bin\Debug\net6.0\NLog.Extensions.Logging.dll
 C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+C:\Users\tenzi\source\repos\SportsStore\SportsStore.Tests\bin\Debug\net6.0\libman.json
