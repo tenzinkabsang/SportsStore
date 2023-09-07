@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NLog.Web;
 using SportsStore.Data;
 using SportsStore.Models;
+using SportsStore.Web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +25,14 @@ builder.Services.AddDbContext<StoreDbContext>(opts =>
 });
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
 
@@ -38,23 +46,45 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
+
+app.MapControllerRoute(
+    name: "catpage",
+    pattern: "{category}/Page{productPage:int}",
+    new { Controller = "Home", action = "Index" }
+    );
+
+app.MapControllerRoute(
+    name: "page",
+    pattern: "Page{productPage:int}",
+    new { Controller = "Home", action = "Index", productPage = 1 }
+    );
+
+app.MapControllerRoute(
+    name: "category",
+    pattern: "{category}",
+    new { Controller = "Home", action = "Index", productPage = 1 }
+    );
+
+app.MapControllerRoute(
+    name: "pagination",
+    pattern: "Products/Page{productPage}",
+    new { Controller = "Home", action = "Index", productPage = 1 }
+    );
+
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.UseRouting();
 
 app.UseAuthorization();
 
 
-app.MapControllerRoute(
-    name: "pagination",
-    pattern: "Products/Page{page}",
-    new { Controller = "Home", action = "Index" }
-    );
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
+app.MapRazorPages();
+app.MapBlazorHub();
+app.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
 
 // Seed dummy data
 //SeedData.Populate(app);

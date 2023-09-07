@@ -25,21 +25,22 @@ namespace SportsStore.Controllers
             return View(product);
         }
 
-        public ViewResult Index(int page = 1)
+        public ViewResult Index(string? category, int productPage = 1)
         {
             int pageSize = _config.GetValue<int>(PAGESIZE);
 
-            (int totalNumberOfProducts, IList<Product> paginatedProducts) products = _productRepository.GetProducts(page, pageSize);
+            (int totalNumberOfProducts, IList<Product> paginatedProducts) products = _productRepository.GetProducts(category, productPage, pageSize);
 
             var viewModel = new ProductListViewModel
             {
                 Products = products.paginatedProducts,
                 PagingInfo = new PagingInfo
                 {
-                    CurrentPage = page,
+                    CurrentPage = productPage,
                     ItemsPerPage = pageSize,
                     TotalItems = products.totalNumberOfProducts
-                }
+                },
+                CurrentCategory = category
             };
 
             return View(viewModel);

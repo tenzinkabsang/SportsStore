@@ -24,7 +24,7 @@ namespace SportsStore.Tests
         public void Can_Use_Repository()
         {
             var mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetProducts(It.IsAny<int>(), It.IsAny<int>())).Returns((2, new List<Product>
+            mock.Setup(m => m.GetProducts(It.IsAny<string?>(), It.IsAny<int>(), It.IsAny<int>())).Returns((2, new List<Product>
             {
                 new Product { Id = 1, Name = "P1"},
                 new Product { Id = 2, Name = "P2"}
@@ -33,7 +33,7 @@ namespace SportsStore.Tests
 
             HomeController controller = new HomeController(mock.Object, InMemoryConfig);
 
-            ProductListViewModel viewModel = controller.Index()?.ViewData.Model as ProductListViewModel ?? new();
+            ProductListViewModel viewModel = controller.Index(null)?.ViewData.Model as ProductListViewModel ?? new();
 
             //Assert
             Assert.True(viewModel.Products.Count == 2);
@@ -59,7 +59,7 @@ namespace SportsStore.Tests
         public void Can_Send_Pagination_ViewModel()
         {
             var mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.GetProducts(It.IsAny<int>(), It.IsAny<int>())).Returns((5, new List<Product>
+            mock.Setup(m => m.GetProducts(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>())).Returns((5, new List<Product>
             {
                 new Product { Id = 1, Name = "P1"},
                 new Product { Id = 2, Name = "P2"},
@@ -71,7 +71,7 @@ namespace SportsStore.Tests
             var controller = new HomeController(mock.Object, InMemoryConfig);
 
             // Act
-            ProductListViewModel viewModel = controller.Index(2)?.ViewData.Model as ProductListViewModel ?? new();
+            ProductListViewModel viewModel = controller.Index(null, 2)?.ViewData.Model as ProductListViewModel ?? new();
 
             // Assert
             PagingInfo pageInfo = viewModel.PagingInfo;

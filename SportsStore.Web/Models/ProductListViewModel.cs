@@ -8,5 +8,7 @@ namespace SportsStore.Web.Models
         public IList<Product> Products { get; set; } = new List<Product>();
 
         public PagingInfo PagingInfo { get; set; } = new();
+
+        public string? CurrentCategory { get; set; }
     }
 }

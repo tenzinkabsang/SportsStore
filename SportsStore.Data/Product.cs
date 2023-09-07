@@ -26,4 +26,5 @@ namespace SportsStore.Data
         public DateTime ModifiedDate { get; set; }
     }
 
+
 }

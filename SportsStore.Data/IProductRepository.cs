@@ -2,8 +2,9 @@
 {
     public interface IProductRepository
     {
-        (int totalNumberOfProducts, IList<Product> paginatedProducts) GetProducts(int pageNumber, int pageSize);
+        (int totalNumberOfProducts, IList<Product> paginatedProducts) GetProducts(string? category, int pageNumber, int pageSize);
         Product GetProductById(int id);
+        List<string> GetAllCategories();
     }
 
     public class ProductRepository : IProductRepository
@@ -18,15 +19,21 @@
         /// <summary>
         /// Used named Tuple for now. If any more data needed - create a class!
         /// </summary>
-        public (int totalNumberOfProducts, IList<Product> paginatedProducts) GetProducts(int pageNumber, int pageSize)
+        public (int totalNumberOfProducts, IList<Product> paginatedProducts) GetProducts(string? category, int pageNumber, int pageSize)
         {
-            var products = _dbContext.Products.Where(p => !p.IsDeleted)
+            bool searchCriteria(Product p) => !p.IsDeleted && (category == null || p.Category == category);
+
+
+            var products = _dbContext.Products
+                .Where(searchCriteria)
                 .OrderBy(p => p.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
-            int totalProductCount = _dbContext.Products.Count();
+            int totalProductCount = _dbContext.Products
+                .Where(searchCriteria)
+                .Count();
 
             return (totalNumberOfProducts: totalProductCount, paginatedProducts: products);
         }
@@ -39,6 +46,15 @@
                 throw new Exception($"Product with id={id} not found.");
 
             return p;
+        }
+
+        public List<string> GetAllCategories()
+        {
+            return _dbContext.Products
+                .Select(p => p.Category)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToList();
         }
     }
 }
