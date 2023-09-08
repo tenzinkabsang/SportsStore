@@ -1,0 +1,69 @@
+﻿@page "/admin/orders"
+
+@inherits OwningComponentBase<IOrderRepository>
+
+<OrderTable TableTitle="Unshipped Orders" Orders="UnshippedOrders" ButtonLabel="Ship" OrderSelected="ShipOrder" />
+
+<OrderTable TableTitle="Shipped Orders" Orders="ShippedOrders" ButtonLabel="ResetOrder" OrderSelected="ResetOrder" />
+
+<button class="btn btn-info" @onclick="@(e => UpdateData())">Refresh Data</button>
+
+
+
+@code {
+
+
+    public IOrderRepository Repository => ScopedServices.GetRequiredService<IOrderRepository>();
+
+    public ICollection<OrderViewModel> AllOrders { get; set; } = new List<OrderViewModel>();
+    public ICollection<OrderViewModel> UnshippedOrders { get; set; } = new List<OrderViewModel>();
+    public ICollection<OrderViewModel> ShippedOrders { get; set; } = new List<OrderViewModel>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        var orderEntities = await Repository.GetOrdersAsync();
+
+        // Abstract this away for real projects :)
+        AllOrders = orderEntities.Select(e => new OrderViewModel
+            {
+                OrderId = e.Id,
+                Name = e.Name,
+                Line1 = e.Address.Line1,
+                Line2 = e.Address.Line1,
+                City = e.Address.City,
+                State = e.Address.State,
+                Zip = e.Address.Zip,
+                GiftWrap = e.GiftWrap,
+                IsShipped = e.IsShipped,
+                Items = e.CartItems.Select(x => new LineItem
+                {
+                    CartLineId = x.Id,
+                    Quantity = x.Quantity,
+                    Product = x.Product
+                }).ToList()
+
+            }).ToList();
+
+        UnshippedOrders = AllOrders.Where(o => !o.IsShipped).ToList();
+        ShippedOrders = AllOrders.Where(o => o.IsShipped).ToList();
+
+    }
+
+    public async Task ShipOrder(int id) => await UpdateOrder(id, true);
+    public async Task ResetOrder(int id) => await UpdateOrder(id, false);
+
+
+    private async Task UpdateOrder(int id, bool shipValue)
+    {
+        Order order = await Repository.GetByIdAsync(id).ConfigureAwait(false);
+        order.IsShipped = shipValue;
+        await Repository.SaveOrderAsync(order);
+    }
+
+
+}

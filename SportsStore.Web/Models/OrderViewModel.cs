@@ -29,5 +29,8 @@ namespace SportsStore.Web.Models
 
         [DisplayName("Gift wrap these items")]
         public bool GiftWrap { get; set; }
+
+        [BindNever]
+        public bool IsShipped { get; set; }
     }
 }

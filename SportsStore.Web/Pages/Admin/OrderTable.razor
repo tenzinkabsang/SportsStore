@@ -1,0 +1,53 @@
+﻿
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th colspan="5" class="text-center">@TableTitle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Orders.Any())
+        {
+            @foreach (OrderViewModel order in Orders)
+            {
+                <tr>
+                    <td>@order.Name</td>
+                    <td>@order.Zip</td>
+                    <th>Product</th>
+                    <th>Quantity</th>
+
+                    <td>
+                        <button class="btn btn-sm btn-danger"
+                        @onclick="@(e => OrderSelected.InvokeAsync(order.OrderId))">
+                            @ButtonLabel
+                        </button>
+                    </td>
+
+                </tr>
+                @foreach (LineItem item in order.Items)
+                {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Quantity</td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>
+
+
+@code {
+    [Parameter]
+    public string TableTitle { get; set; } = "Orders";
+
+    [Parameter]
+    public ICollection<OrderViewModel> Orders { get; set; } = new List<OrderViewModel>();
+
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Shipped";
+
+    [Parameter]
+    public EventCallback<int> OrderSelected { get; set; }
+}
