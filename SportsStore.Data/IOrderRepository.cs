@@ -28,7 +28,9 @@ namespace SportsStore.Data
 
         public async Task<Order> GetByIdAsync(int orderId)
         {
-            Order? order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == orderId);
+            Order? order = await _dbContext.Orders
+                .Include(o => o.OrderItems)
+                .FirstOrDefaultAsync(o => o.Id == orderId);
 
             if(order == null)
                 throw new Exception($"Order with id={orderId} not found.");
@@ -40,7 +42,7 @@ namespace SportsStore.Data
         public async Task<IList<Order>> GetOrdersAsync()
         {
             var orders = await _dbContext.Orders
-                .Include(o => o.CartItems)
+                .Include(o => o.OrderItems)
                 .ThenInclude(c => c.Product)
                 .ToListAsync();
 
@@ -49,7 +51,7 @@ namespace SportsStore.Data
 
         public void SaveOrder(Order order)
         {
-            _dbContext.AttachRange(order.CartItems.Select(c => c.Product));
+            _dbContext.AttachRange(order.OrderItems.Select(c => c.Product));
 
             if (order.Id == 0)
             {
@@ -61,7 +63,7 @@ namespace SportsStore.Data
 
         public async Task SaveOrderAsync(Order order)
         {
-            _dbContext.AttachRange(order.CartItems.Select(c => c.Product));
+            _dbContext.AttachRange(order.OrderItems.Select(c => c.Product));
 
             if (order.Id == 0)
             {

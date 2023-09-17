@@ -1,8 +1,11 @@
-﻿namespace SportsStore.Data
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace SportsStore.Data
 {
     public interface IProductRepository
     {
-        (int totalNumberOfProducts, IList<Product> paginatedProducts) GetProducts(string? category, int pageNumber, int pageSize);
+        (int totalNumberOfProducts, IList<Product> paginatedProducts) 
+        GetProducts(string? category, int pageNumber, int pageSize);
         Product GetProductById(int id);
         List<string> GetAllCategories();
     }
@@ -25,6 +28,7 @@
 
 
             var products = _dbContext.Products
+                .Include(p => p.Images)
                 .Where(searchCriteria)
                 .OrderBy(p => p.Id)
                 .Skip((pageNumber - 1) * pageSize)
@@ -40,7 +44,9 @@
 
         public Product GetProductById(int id)
         {
-            Product? p = _dbContext.Products.FirstOrDefault(x => x.Id == id && !x.IsDeleted);
+            Product? p = _dbContext.Products
+                .Include(p => p.Images)
+                .FirstOrDefault(x => x.Id == id && !x.IsDeleted);
 
             if (p == null)
                 throw new Exception($"Product with id={id} not found.");

@@ -10,7 +10,8 @@ namespace SportsStore.Data
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Order> Orders => Set<Order>();
         public DbSet<Address> Addresses => Set<Address>();
-        public DbSet<CartItem> CartItems => Set<CartItem>();
+        public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+        public DbSet<Image> Images => Set<Image>();
 
     }
 }

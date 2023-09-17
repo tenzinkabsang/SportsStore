@@ -42,13 +42,8 @@ namespace SportsStore.Web.Controllers
                         State = model.State,
                         Zip = model.Zip
                     },
-                    CartItems = cart.CartItems
-                                    .Select(c =>
-                                    new Data.CartItem
-                                    {
-                                        Quantity = c.Quantity,
-                                        Product = c.Product
-                                    }).ToList()
+                    OrderItems = cart.CartItems
+                                    .Select(c => new OrderItem { Quantity = c.Quantity, Product = c.Product }).ToList()
                 };
 
 

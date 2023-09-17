@@ -34,13 +34,12 @@
                 OrderId = e.Id,
                 Name = e.Name,
                 Line1 = e.Address.Line1,
-                Line2 = e.Address.Line1,
                 City = e.Address.City,
                 State = e.Address.State,
                 Zip = e.Address.Zip,
                 GiftWrap = e.GiftWrap,
                 IsShipped = e.IsShipped,
-                Items = e.CartItems.Select(x => new LineItem
+                Items = e.OrderItems.Select(x => new LineItem
                 {
                     CartLineId = x.Id,
                     Quantity = x.Quantity,

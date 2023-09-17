@@ -7,7 +7,10 @@ namespace SportsStore.Web
         public static string ToJson(this object value, bool format = true)
         {
             Formatting formatting = format ? Formatting.Indented : Formatting.None;
-            return JsonConvert.SerializeObject(value, formatting);
+            return JsonConvert.SerializeObject(value, formatting, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
         }
 
         public static T? FromJson<T>(this string? json)

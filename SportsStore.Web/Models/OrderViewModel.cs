@@ -18,8 +18,6 @@ namespace SportsStore.Web.Models
         [Required(ErrorMessage = "Please enter the first address")]
         public string Line1 { get; set; }
 
-        public string Line2 { get; set; }
-
         [Required(ErrorMessage ="Please enter a city name")]
         public string City { get; set; }
 

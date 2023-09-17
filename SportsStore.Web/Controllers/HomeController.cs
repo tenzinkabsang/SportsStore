@@ -18,9 +18,10 @@ namespace SportsStore.Controllers
             _config = config;
         }
 
-        public ViewResult Detail(int productId)
+        public ViewResult Detail(int productId, string returlUrl)
         {
             var product = _productRepository.GetProductById(productId);
+            ViewBag.ReturnUrl = returlUrl;
 
             return View(product);
         }
@@ -29,7 +30,8 @@ namespace SportsStore.Controllers
         {
             int pageSize = _config.GetValue<int>(PAGESIZE);
 
-            (int totalNumberOfProducts, IList<Product> paginatedProducts) products = _productRepository.GetProducts(category, productPage, pageSize);
+            (int totalNumberOfProducts, IList<Product> paginatedProducts) products = 
+                _productRepository.GetProducts(category, productPage, pageSize);
 
             var viewModel = new ProductListViewModel
             {
