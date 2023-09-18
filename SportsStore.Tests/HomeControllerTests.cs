@@ -6,6 +6,7 @@ using SportsStore.Controllers;
 using SportsStore.Data;
 using SportsStore.Models;
 using SportsStore.Web.Models;
+using SportsStore.Web.Services;
 
 namespace SportsStore.Tests
 {
@@ -30,8 +31,10 @@ namespace SportsStore.Tests
                 new Product { Id = 2, Name = "P2"}
             }));
 
+            var recommendationService = new Mock<IRecommendationService>();
 
-            HomeController controller = new HomeController(mock.Object, InMemoryConfig);
+
+            HomeController controller = new HomeController(mock.Object, InMemoryConfig, recommendationService.Object);
 
             ProductListViewModel viewModel = controller.Index(null)?.ViewData.Model as ProductListViewModel ?? new();
 
@@ -41,18 +44,24 @@ namespace SportsStore.Tests
         }
 
         [Fact]
-        public void CanGetProductById()
+        public async Task CanGetProductById()
         {
             var mock = new Mock<IProductRepository>();
             mock.Setup(m => m.GetProductById(It.IsAny<int>())).Returns(
                 new Product { Id = 2, Name = "PXX" }
             );
-            HomeController controller = new HomeController(mock.Object, InMemoryConfig);
+            var recommendationService = new Mock<IRecommendationService>();
 
-            Product product = controller.Detail(2).ViewData?.Model as Product ?? new();
+
+            HomeController controller = new HomeController(mock.Object, InMemoryConfig, recommendationService.Object);
+
+
+            var result = await controller.Detail(2, string.Empty);
+
+            var viewModel = result.ViewData?.Model as ProductDetailViewModel ?? new();
 
             // Assert
-            Assert.Equal("PXX", product.Name);
+            Assert.Equal("PXX", viewModel.Product.Name);
         }
 
         [Fact]
@@ -68,7 +77,11 @@ namespace SportsStore.Tests
                 new Product { Id = 5, Name = "P5"},
             }));
 
-            var controller = new HomeController(mock.Object, InMemoryConfig);
+            var recommendationService = new Mock<IRecommendationService>();
+
+
+            HomeController controller = new HomeController(mock.Object, InMemoryConfig, recommendationService.Object);
+
 
             // Act
             ProductListViewModel viewModel = controller.Index(null, 2)?.ViewData.Model as ProductListViewModel ?? new();

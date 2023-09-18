@@ -6,6 +6,11 @@ namespace SportsStore.Data
     {
         (int totalNumberOfProducts, IList<Product> paginatedProducts) 
         GetProducts(string? category, int pageNumber, int pageSize);
+
+        Task<IList<Product>> GetProductsForCategory(string category, int count);
+
+        Task<IList<Product>> GetProductsWithIds(IList<int> productIds);
+
         Product GetProductById(int id);
         List<string> GetAllCategories();
     }
@@ -61,6 +66,27 @@ namespace SportsStore.Data
                 .Distinct()
                 .OrderBy(x => x)
                 .ToList();
+        }
+
+        
+        public async Task<IList<Product>> GetProductsWithIds(IList<int> productIds)
+        {
+            var products = await _dbContext.Products
+                .Include(p => p.Images)
+                .Where(p => productIds.Contains(p.Id))
+                .ToListAsync();
+
+            return products;
+        }
+
+        public async Task<IList<Product>> GetProductsForCategory(string category, int count)
+        {
+            var products = await _dbContext.Products
+                .Where(p => p.Category == category)
+                .Take(count)
+                .ToListAsync();
+
+            return products;
         }
     }
 }

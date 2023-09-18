@@ -2,36 +2,46 @@
 using SportsStore.Data;
 using SportsStore.Models;
 using SportsStore.Web.Models;
-using System.Diagnostics;
+using SportsStore.Web.Services;
 
 namespace SportsStore.Controllers
 {
     public class HomeController : Controller
     {
-        private const string PAGESIZE = "WebApp:PageSize";
         private readonly IProductRepository _productRepository;
-        private readonly IConfiguration _config;
+        private readonly IRecommendationService _recommendationService;
+        private readonly int PageSize;
 
-        public HomeController(IProductRepository productRepo, IConfiguration config)
+        public HomeController(IProductRepository productRepo, IConfiguration config,
+            IRecommendationService recommendationService)
         {
             _productRepository = productRepo;
-            _config = config;
+            _recommendationService = recommendationService;
+
+            PageSize = config.GetValue<int>("WebApp:PageSize");
         }
 
-        public ViewResult Detail(int productId, string returlUrl)
+        public async Task<ViewResult> Detail(int productId, string returnUrl)
         {
             var product = _productRepository.GetProductById(productId);
-            ViewBag.ReturnUrl = returlUrl;
 
-            return View(product);
+            var recommendedItems = await _recommendationService.GetRecommendedItemsFor(product);
+
+            var viewModel = new ProductDetailViewModel
+            {
+                Product = product,
+                ReturnUrl = returnUrl,
+                RecommendedItems = recommendedItems
+            };
+
+            return View(viewModel);
         }
 
         public ViewResult Index(string? category, int productPage = 1)
         {
-            int pageSize = _config.GetValue<int>(PAGESIZE);
 
             (int totalNumberOfProducts, IList<Product> paginatedProducts) products = 
-                _productRepository.GetProducts(category, productPage, pageSize);
+                _productRepository.GetProducts(category, productPage, PageSize);
 
             var viewModel = new ProductListViewModel
             {
@@ -39,7 +49,7 @@ namespace SportsStore.Controllers
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = productPage,
-                    ItemsPerPage = pageSize,
+                    ItemsPerPage = PageSize,
                     TotalItems = products.totalNumberOfProducts
                 },
                 CurrentCategory = category
