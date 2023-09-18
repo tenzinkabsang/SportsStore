@@ -1,15 +1,21 @@
 ﻿@model ProductListViewModel
 
 
-@foreach(var p in Model.Products)
-{
-   <partial name="_ProductSummary" model="p" />
-}
+<div class="row rows-cols-1 row-cols-md-2 g-4">
 
-<div page-model="@Model.PagingInfo" page-action="index" class="btn-group pull-right m-1" 
-    page-class-enabled="true" 
-    page-class="btn"
-    page-class-normal="btn-outline-dark"
-    page-class-selected="btn-primary"
-    page-url-category="@Model.CurrentCategory!"
-></div>
+    @foreach (var p in Model.Products)
+    {
+        <div class="col">
+            <partial name="_ProductSummary" model="p" />
+        </div>
+    }
+
+
+</div>
+
+<div page-model="@Model.PagingInfo" page-action="index" class="btn-group pull-right m-1"
+     page-class-enabled="true"
+     page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     page-url-category="@Model.CurrentCategory!"></div>
