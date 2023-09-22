@@ -1,15 +1,15 @@
 ﻿@model Product
 
 @{
-    string mainImageUrl = Model.Images.FirstOrDefault(i => i.IsMainImage)?.ImageUrl + "200x200" ?? "";
+    string mainImageUrl = Model.Images.FirstOrDefault(i => i.IsMainImage)?.ImageUrl ?? "";
 }
 
-<div class="card style=width: 18rem;">
+<div class="card">
     <img class="card-img-top" src="@mainImageUrl" />
     <div class="card-body">
         <div class="card-body">
             <a asp-action="Detail" asp-controller="Home" asp-route-productId="@Model.Id" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
-                <h5 class="card-title">@Model.Name</h5>
+                <span>@Model.Name</span>
                 <p class="card-text">
                     @Model.Price.ToString("c")
                 </p>

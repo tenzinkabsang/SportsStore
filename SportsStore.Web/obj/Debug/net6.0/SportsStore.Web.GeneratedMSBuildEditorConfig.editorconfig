@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRtaW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/tenzi/source/repos/SportsStore/SportsStore.Web/Pages/Admin/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/tenzi/source/repos/SportsStore/SportsStore.Web/Pages/Admin/Editor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRWRpdG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/tenzi/source/repos/SportsStore/SportsStore.Web/Pages/Admin/Orders.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cT3JkZXJzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

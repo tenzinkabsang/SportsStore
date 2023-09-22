@@ -1,0 +1,59 @@
+﻿@page "/admin/products/details/{id:int}"
+
+<h3 class="big-info text-white text-center p-1">Details</h3>
+
+<table class="table table-sm table-bordered table-striped">
+    <tbody>
+        <tr>
+            <th>ID</th>
+            <td>@Product?.ProductId</td>
+        </tr>
+            <tr>
+            <th>Name</th>
+            <td>@Product?.Name</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>@Product?.Description</td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>@Product?.Category</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>@Product?.Price.ToString("c")</td>
+        </tr>
+    </tbody>
+</table>
+
+<NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+<NavLink class="btn btn-secondary" href="/admin/products">Back</NavLink>
+
+
+@code {
+    [Inject]
+    public IProductRepository ProductRepo { get; set; }
+
+    [Parameter]
+    public int Id { get; set; }
+
+    public ProductViewModel? Product { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        var entity = ProductRepo.GetProductById(Id);
+
+        Product = new ProductViewModel
+            {
+                ProductId = entity.Id,
+                Name = entity.Name,
+                Description = entity.Description,
+                Price = entity.Price,
+                Category = entity.Category
+            };
+    }
+
+    public string EditUrl => $"/admin/products/edit/{Product?.ProductId}";
+
+}

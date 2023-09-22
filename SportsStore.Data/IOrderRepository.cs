@@ -30,6 +30,7 @@ namespace SportsStore.Data
         {
             Order? order = await _dbContext.Orders
                 .Include(o => o.OrderItems)
+                .ThenInclude(i => i.Product)
                 .FirstOrDefaultAsync(o => o.Id == orderId);
 
             if(order == null)
@@ -42,8 +43,10 @@ namespace SportsStore.Data
         public async Task<IList<Order>> GetOrdersAsync()
         {
             var orders = await _dbContext.Orders
+                .Include(o => o.Address)
                 .Include(o => o.OrderItems)
                 .ThenInclude(c => c.Product)
+                .ThenInclude(p => p.Images)
                 .ToListAsync();
 
             return orders;
@@ -72,7 +75,7 @@ namespace SportsStore.Data
 
             //_dbContext.Entry(order).State = EntityState.Modified;
 
-            _dbContext.Update(order);
+            //_dbContext.Update(order);
 
             await _dbContext.SaveChangesAsync();
         }

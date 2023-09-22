@@ -86,7 +86,7 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapBlazorHub();
-app.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
+app.MapFallbackToPage(pattern: "/admin/{*catchall}", page: "/Admin/Index");
 
 // Seed dummy data
 //SeedData.Populate(app);

@@ -11,13 +11,11 @@
 
 
 @code {
+    public IOrderRepository Repository => Service;
 
-
-    public IOrderRepository Repository => ScopedServices.GetRequiredService<IOrderRepository>();
-
-    public ICollection<OrderViewModel> AllOrders { get; set; } = new List<OrderViewModel>();
-    public ICollection<OrderViewModel> UnshippedOrders { get; set; } = new List<OrderViewModel>();
-    public ICollection<OrderViewModel> ShippedOrders { get; set; } = new List<OrderViewModel>();
+    public List<OrderViewModel> AllOrders { get; set; } = new();
+    public List<OrderViewModel> UnshippedOrders { get; set; } = new();
+    public List<OrderViewModel> ShippedOrders { get; set; } = new();
 
     protected async override Task OnInitializedAsync()
     {
@@ -62,6 +60,7 @@
         Order order = await Repository.GetByIdAsync(id).ConfigureAwait(false);
         order.IsShipped = shipValue;
         await Repository.SaveOrderAsync(order);
+        await UpdateData();
     }
 
 

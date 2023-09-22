@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportsStore.Data
 {
@@ -17,14 +15,9 @@ namespace SportsStore.Data
 
         public bool IsDeleted { get; set; }
 
-        public ICollection<Image> Images { get; set; } = new List<Image>();
-    }
+        public int CategoryId { get; set; }
 
-    public class Category
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public ICollection<Image> Images { get; set; } = new List<Image>();
     }
 
 

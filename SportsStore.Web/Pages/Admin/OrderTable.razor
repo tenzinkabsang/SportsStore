@@ -12,9 +12,9 @@
             {
                 <tr>
                     <td>@order.Name</td>
-                    <td>@order.Zip</td>
-                    <th>Product</th>
+                    <th>Items</th>
                     <th>Quantity</th>
+                    <th>Price</th>
 
                     <td>
                         <button class="btn btn-sm btn-danger"
@@ -27,11 +27,17 @@
                 @foreach (LineItem item in order.Items)
                 {
                     <tr>
-                        <td colspan="2"></td>
+                        <td colspan="1"></td>
                         <td>@item.Product.Name</td>
                         <td>@item.Quantity</td>
+                        <td>@item.Total.ToString("c")</td>
                     </tr>
                 }
+               @*  <tr>
+                    <td colspan="2"></td>
+                    <td>Order Total:</td>
+                    <td>@order.OrderTotal().ToString("c")</td>
+                </tr> *@
             }
         }
     </tbody>

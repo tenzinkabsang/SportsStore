@@ -30,5 +30,7 @@ namespace SportsStore.Web.Models
 
         [BindNever]
         public bool IsShipped { get; set; }
+
+        public decimal OrderTotal() => Items.Sum(i => i.Product.Price * i.Quantity);
     }
 }

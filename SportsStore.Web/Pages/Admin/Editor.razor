@@ -1,0 +1,115 @@
+﻿@page "/admin/products/edit/{id:int}"
+@page "/admin/products/create"
+
+@inherits OwningComponentBase<IProductRepository>
+
+<style>
+    div.validation-message {
+        color: rgb(220, 53, 69);
+        font-weight: 500
+    }
+</style>
+
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Product</h3>
+<EditForm Model="Product" OnValidSubmit="SaveProduct">
+
+    <DataAnnotationsValidator />
+    @if (Product.ProductId != 0)
+    {
+        <div class="form-group">
+            <label>ID</label>
+            <input class="form-control" disabled value="@Product.ProductId" />
+        </div>
+    }
+
+    <div class="form-group">
+        <label>Name</label>
+        <ValidationMessage For="@(() => Product.Name)" />
+        <InputText class="form-control" @bind-Value="Product.Name" />
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <ValidationMessage For="@(() => Product.Description)" />
+        <InputText class="form-control" @bind-Value="Product.Description" />
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <ValidationMessage For="@(() => Product.Category)" />
+        <InputText class="form-control" @bind-Value="Product.Category" />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <ValidationMessage For="@(() => Product.Price)" />
+        <InputNumber class="form-control" @bind-Value="Product.Price" />
+    </div>
+    <div class="mt-2">
+        <button type="submit" class="btn btn-@ThemeColor">Save</button>
+        <NavLink class="btn btn-secondary" href="/admin/products">Cancel</NavLink>
+    </div>
+
+</EditForm>
+
+
+
+@code {
+    public IProductRepository ProductRepo => Service;
+
+    [Inject]
+    public NavigationManager? NavManager { get; set; }
+
+    [Parameter]
+    public int Id { get; set; } = 0;
+
+    public ProductViewModel Product { get; set; } = new();
+
+    protected override void OnParametersSet()
+    {
+        if (!IsNewProduct)
+        {
+            var entity = ProductRepo.GetProductById(Id);
+
+            Product = new ProductViewModel
+                {
+                    ProductId = entity.Id,
+                    Name = entity.Name,
+                    Description = entity.Description,
+                    Price = entity.Price,
+                    Category = entity.Category
+                };
+        }
+    }
+
+    public async Task SaveProduct()
+    {
+        if (IsNewProduct)
+        {
+            await ProductRepo.CreateProductAsync(new Product
+                {
+                    Id = Product.ProductId,
+                    Name = Product.Name,
+                    Description = Product.Description,
+                    Price = Product.Price,
+                    Category = Product.Category,
+                    CategoryId = 2 // placeholder
+                });
+        }
+        else
+        {
+            var entity = ProductRepo.GetProductById(Id);
+            entity.Name = Product.Name;
+            entity.Description = Product.Description;
+            entity.Price = Product.Price;
+            entity.Category = Product.Category;
+
+            await ProductRepo.SaveProductAsync(entity);
+        }
+
+        NavManager?.NavigateTo("/admin/products");
+    }
+
+    public string ThemeColor => IsNewProduct ? "primary" : "warning";
+    public string TitleText => IsNewProduct ? "Create" : "Edit";
+
+
+    private bool IsNewProduct => Id == 0;
+}
