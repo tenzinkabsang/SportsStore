@@ -1,6 +1,6 @@
 ﻿@model Cart
 
-<div class="">
+<div class="d-flex float-end">
     @if(Model?.CartItems.Count > 0)
     {
         <small class="navbar-text">
@@ -9,7 +9,8 @@
             @Model?.ComputeTotalValue().ToString("c")
         </small>
     }
-    <a class="btn btn-sm btn-secondary navbar-btn" asp-page="/Cart" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
-        <i class="fa fa-shopping-cart"></i>    
+    <a class="border rounded py-1 px-3 nav-link d-flex align-items-center" asp-page="/Cart" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
+        <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My cart</p>
     </a>
+
 </div>
