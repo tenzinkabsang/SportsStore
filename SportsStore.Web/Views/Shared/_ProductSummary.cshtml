@@ -4,22 +4,6 @@
     string mainImageUrl = Model.Images.FirstOrDefault(i => i.IsMainImage)?.ImageUrl ?? "";
     int quantityPlaceHolderForNow = new Random().Next(4, 25);
 }
-@* 
-<div class="card">
-    <img class="card-img-top" src="@mainImageUrl" />
-    <div class="card-body">
-        <div class="card-body">
-            <a asp-action="Detail" asp-controller="Home" asp-route-productId="@Model.Id" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
-                <span>@Model.Name</span>
-                <p class="card-text">
-                    @Model.Price.ToString("c")
-                </p>
-            </a>
-        </div>
-
-    </div>
-
-</div> *@
 
 <div class="card my-2 shadow-0">
     <a asp-action="Detail" asp-controller="Home" asp-route-productId="@Model.Id" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()" class="img-wrap">
