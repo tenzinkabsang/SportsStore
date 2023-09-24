@@ -398,9 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 *.suo
-*/bin 
-*/obj
-.vs/SportsStore/v17/.suo
-SportsStore.Data/obj/
-SportsStore.Tests/obj/
-SportsStore.Web/obj/
+*/bin/ 
+*/obj/
