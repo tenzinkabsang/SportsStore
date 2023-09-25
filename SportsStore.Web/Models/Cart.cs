@@ -23,7 +23,7 @@ namespace SportsStore.Web.Models
 
         public virtual void Clear() => CartItems.Clear();
 
-        public decimal ComputeTotalValue() => CartItems.Sum(c => c.Product.Price * c.Quantity);
+        public decimal CartTotal => CartItems.Sum(c => c.Product.Price * c.Quantity);
     }
 
 

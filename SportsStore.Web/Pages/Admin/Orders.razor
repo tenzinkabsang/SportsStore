@@ -30,7 +30,8 @@
         AllOrders = orderEntities.Select(e => new OrderViewModel
             {
                 OrderId = e.Id,
-                Name = e.Name,
+                FirstName = e.Name.FirstName(),
+                LastName = e.Name.LastName(),
                 Line1 = e.Address.Line1,
                 City = e.Address.City,
                 State = e.Address.State,

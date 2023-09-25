@@ -12,8 +12,16 @@ namespace SportsStore.Web.Models
         [BindNever]
         public ICollection<LineItem> Items { get; set; } = new List<LineItem>();
 
-        [Required(ErrorMessage ="Please enter a name")]
-        public string Name { get; set; }
+        [Required(ErrorMessage = "Please enter your first name")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Please enter your last name")]
+        public string LastName { get; set; }
+
+        [Required(ErrorMessage = "Please enter your email address")]
+        public string Email { get; set; }
+
+        public string? PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter the first address")]
         public string Line1 { get; set; }
@@ -30,6 +38,9 @@ namespace SportsStore.Web.Models
 
         [BindNever]
         public bool IsShipped { get; set; }
+
+        [BindNever]
+        public string FullName => $"{FirstName} {LastName}";
 
         public decimal OrderTotal() => Items.Sum(i => i.Product.Price * i.Quantity);
     }

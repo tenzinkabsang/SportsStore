@@ -17,6 +17,7 @@ namespace SportsStore.Web.Controllers
 
         public IActionResult Checkout()
         {
+            ViewBag.Cart = cart;
             return View(new OrderViewModel());
         }
 
@@ -33,7 +34,7 @@ namespace SportsStore.Web.Controllers
                 // Use a mapper or add a service to handle all this!
                 var order = new Order
                 {
-                    Name = model.Name,
+                    Name = model.FullName,
                     GiftWrap = model.GiftWrap,
                     Address = new Address
                     {

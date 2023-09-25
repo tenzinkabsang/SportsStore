@@ -6,7 +6,7 @@
         <small class="navbar-text">
             <b>Your cart:</b>
             @Model?.CartItems.Sum(x => x.Quantity) item(s)
-            @Model?.ComputeTotalValue().ToString("c")
+            @Model?.CartTotal.ToString("c")
         </small>
     }
     <a class="border rounded py-1 px-3 nav-link d-flex align-items-center" asp-page="/Cart" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
