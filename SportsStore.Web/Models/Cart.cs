@@ -10,17 +10,19 @@ namespace SportsStore.Web.Models
         {
             LineItem? line = CartItems.FirstOrDefault(p => p.Product.Id == product.Id);
 
-            if(line == null)
+            if (line == null)
                 CartItems.Add(new LineItem { Product = product, Quantity = quantity });
             else
                 line.Quantity += quantity;
 
         }
 
+        public bool IsEmpty => !CartItems.Any();
+
         public virtual void RemoveLine(Product product) => CartItems.RemoveAll(c => c.Product.Id == product.Id);
 
         public virtual void Clear() => CartItems.Clear();
-        
+
         public decimal ComputeTotalValue() => CartItems.Sum(c => c.Product.Price * c.Quantity);
     }
 
@@ -30,6 +32,8 @@ namespace SportsStore.Web.Models
         public int CartLineId { get; set; }
         public Product Product { get; set; } = new();
         public int Quantity { get; set; }
+
+        public string MainImageUrl => Product.Images.FirstOrDefault(img => img.IsMainImage)?.ImageUrl ?? string.Empty;
 
         public decimal Total => Quantity * Product.Price;
     }
