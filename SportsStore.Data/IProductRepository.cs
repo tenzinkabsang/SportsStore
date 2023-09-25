@@ -88,6 +88,7 @@ namespace SportsStore.Data
         public async Task<List<Product>> GetProductsForCategory(string category, int count)
         {
             var products = await _dbContext.Products
+                .Include(p => p.Images)
                 .Where(p => p.Category == category)
                 .Take(count)
                 .ToListAsync();
