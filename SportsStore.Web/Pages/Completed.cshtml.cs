@@ -5,6 +5,9 @@ namespace SportsStore.Web.Pages
 {
     public class CompletedModel : PageModel
     {
+
+
+
         public void OnGet()
         {
         }

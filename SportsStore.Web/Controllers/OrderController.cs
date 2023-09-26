@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using SportsStore.Data;
 using SportsStore.Web.Models;
 
@@ -15,9 +16,14 @@ namespace SportsStore.Web.Controllers
             this.cart = cart;
         }
 
-        public IActionResult Checkout()
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
             ViewBag.Cart = cart;
+            base.OnActionExecuting(context);
+        }
+
+        public IActionResult Checkout()
+        {
             return View(new OrderViewModel());
         }
 

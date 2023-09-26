@@ -76,7 +76,7 @@ namespace SportsStore.Tests
             cart.AddItem(p2, 1);
             cart.AddItem(p1, 2);
 
-            decimal total = cart.CartTotal();
+            decimal total = cart.CartTotal;
 
             Assert.Equal(350M, total);
         }
