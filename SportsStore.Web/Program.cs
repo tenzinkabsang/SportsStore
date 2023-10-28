@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.ApplicationInsights;
+using NLog.Fluent;
 using NLog.Web;
 using SportsStore.Data;
 using SportsStore.Models;
@@ -10,13 +12,27 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+
 //Logging
 builder.Host.ConfigureLogging(logging =>
 {
     logging.ClearProviders();
     logging.SetMinimumLevel(LogLevel.Information);
-}).UseNLog();
+});
 
+builder.Services.AddLogging(logBuilder =>
+{
+    logBuilder.AddApplicationInsights()
+
+    // This disables logging to ApplicationInsights for all categories (AspNet.Core, Microsoft, System.Net.Http, etc.)
+    .AddFilter<ApplicationInsightsLoggerProvider>("", LogLevel.None)
+
+    // Only enable our logs to go to ApplicationInsights
+    .AddFilter<ApplicationInsightsLoggerProvider>("Tenzin", LogLevel.Debug);
+});
+
+//.UseNLog();
 
 
 builder.Services.AddDbContext<StoreDbContext>(opts =>
@@ -36,7 +52,15 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddServerSideBlazor();
 
+
+// Health Checks
+builder.Services.AddHealthChecks();
+
+
 var app = builder.Build();
+
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -49,6 +73,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
+app.MapHealthChecks("health");
+
+
 
 app.MapControllerRoute(
     name: "catpage",

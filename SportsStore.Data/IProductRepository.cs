@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace SportsStore.Data
 {
@@ -24,9 +25,12 @@ namespace SportsStore.Data
     public class ProductRepository : IProductRepository
     {
         private readonly StoreDbContext _dbContext;
-        public ProductRepository(StoreDbContext dbContext)
+        private readonly ILogger _logger;
+
+        public ProductRepository(StoreDbContext dbContext, ILoggerFactory loggerFactory)
         {
             _dbContext = dbContext;
+            _logger = loggerFactory.CreateLogger("Tenzin");
         }
 
 
@@ -35,6 +39,8 @@ namespace SportsStore.Data
         /// </summary>
         public (int totalNumberOfProducts, IList<Product> paginatedProducts) GetProducts(string? category, int pageNumber, int pageSize)
         {
+            _logger.Log(LogLevel.Debug, "GetProducts called with {Category}", category);
+
             bool searchCriteria(Product p) => !p.IsDeleted && (category == null || p.Category == category);
 
 
@@ -55,6 +61,8 @@ namespace SportsStore.Data
 
         public Product GetProductById(int id)
         {
+            _logger.Log(LogLevel.Debug, "GetProductById called with {ProductId}", id);
+
             Product? p = _dbContext.Products
                 .Include(p => p.Images)
                 .FirstOrDefault(x => x.Id == id && !x.IsDeleted);

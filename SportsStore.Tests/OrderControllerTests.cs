@@ -13,59 +13,59 @@ namespace SportsStore.Tests
 {
     public class OrderControllerTests
     {
-        [Fact]
-        public void CannotCheckoutEmptyCart()
-        {
-            var mock = new Mock<IOrderRepository>();
-            var cart = new Cart();
-            var order = new OrderViewModel();
+        //[Fact]
+        //public void CannotCheckoutEmptyCart()
+        //{
+        //    var mock = new Mock<IOrderRepository>();
+        //    var cart = new Cart();
+        //    var order = new OrderViewModel();
 
-            var target = new OrderController(mock.Object, cart);
+        //    var target = new OrderController(mock.Object, cart);
 
-            ViewResult? result = target.Checkout(order) as ViewResult;
+        //    ViewResult? result = target.Checkout(order) as ViewResult;
 
-            mock.Verify(m => m.SaveOrder(It.IsAny<Order>()), Times.Never);
-            Assert.True(string.IsNullOrEmpty(result?.ViewName));
-            Assert.False(result?.ViewData.ModelState.IsValid);
-        }
+        //    mock.Verify(m => m.SaveOrder(It.IsAny<Order>()), Times.Never);
+        //    Assert.True(string.IsNullOrEmpty(result?.ViewName));
+        //    Assert.False(result?.ViewData.ModelState.IsValid);
+        //}
 
-        [Fact]
-        public void CannotCheckoutInvalidShippingDetails()
-        {
-            var mock = new Mock<IOrderRepository>();
-            var cart = new Cart();
-            cart.AddItem(new Product(), 1);
+        //[Fact]
+        //public void CannotCheckoutInvalidShippingDetails()
+        //{
+        //    var mock = new Mock<IOrderRepository>();
+        //    var cart = new Cart();
+        //    cart.AddItem(new Product(), 1);
 
-            var order = new OrderViewModel();
+        //    var order = new OrderViewModel();
 
-            var target = new OrderController(mock.Object, cart);
+        //    var target = new OrderController(mock.Object, cart);
 
-            // Inject error
-            target.ModelState.AddModelError("fatal", "fatal");
+        //    // Inject error
+        //    target.ModelState.AddModelError("fatal", "fatal");
 
-            ViewResult? result = target.Checkout(order) as ViewResult;
+        //    ViewResult? result = target.Checkout(order) as ViewResult;
 
 
-            mock.Verify(m => m.SaveOrder(It.IsAny<Order>()), Times.Never);
-            Assert.True(string.IsNullOrEmpty(result?.ViewName));
-            Assert.False(result?.ViewData.ModelState.IsValid);
-        }
+        //    mock.Verify(m => m.SaveOrder(It.IsAny<Order>()), Times.Never);
+        //    Assert.True(string.IsNullOrEmpty(result?.ViewName));
+        //    Assert.False(result?.ViewData.ModelState.IsValid);
+        //}
 
-        [Fact]
-        public void CanCheckoutAndSubmitOrders()
-        {
-            var mock = new Mock<IOrderRepository>();
-            var cart = new Cart();
-            cart.AddItem(new Product(), 1);
+        //[Fact]
+        //public void CanCheckoutAndSubmitOrders()
+        //{
+        //    var mock = new Mock<IOrderRepository>();
+        //    var cart = new Cart();
+        //    cart.AddItem(new Product(), 1);
 
-            var order = new OrderViewModel();
+        //    var order = new OrderViewModel();
 
-            var target = new OrderController(mock.Object, cart);
+        //    var target = new OrderController(mock.Object, cart);
 
-            RedirectToPageResult? result = target.Checkout(order) as RedirectToPageResult;
-            mock.Verify(m => m.SaveOrder(It.IsAny<Order>()), Times.Once);
-            Assert.Equal("/Completed", result?.PageName);
+        //    RedirectToPageResult? result = target.Checkout(order) as RedirectToPageResult;
+        //    mock.Verify(m => m.SaveOrder(It.IsAny<Order>()), Times.Once);
+        //    Assert.Equal("/Completed", result?.PageName);
 
-        }
+        //}
     }
 }

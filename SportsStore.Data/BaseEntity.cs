@@ -9,5 +9,9 @@
         public DateTime ModifiedDate { get; set; }
     }
 
+    public interface ISoftDeletedEntity
+    {
+        bool Deleted { get; set; }
+    }
 
 }

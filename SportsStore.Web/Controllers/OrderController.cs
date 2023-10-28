@@ -9,11 +9,12 @@ namespace SportsStore.Web.Controllers
     {
         private readonly IOrderRepository orderRepo;
         private readonly Cart cart;
-
-        public OrderController(IOrderRepository orderRepo, Cart cart)
+        private readonly ILogger _logger;
+        public OrderController(IOrderRepository orderRepo, Cart cart, ILoggerFactory loggerFactory)
         {
             this.orderRepo = orderRepo;
             this.cart = cart;
+            _logger = loggerFactory.CreateLogger("Tenzin");
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -56,6 +57,10 @@ namespace SportsStore.Web.Controllers
 
                 orderRepo.SaveOrder(order);
                 cart.Clear();
+
+
+                _logger.LogDebug("Checkout Success. {Order}", order.ToJsonMs());
+
                 return RedirectToPage("/Completed", new { OrderId = order.Id });
             }
             else

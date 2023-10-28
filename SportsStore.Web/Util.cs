@@ -1,4 +1,7 @@
 ﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace SportsStore.Web
 {
@@ -22,5 +25,16 @@ namespace SportsStore.Web
         }
 
         public static bool IsExpired(this DateTime value) => DateTime.Now.CompareTo(value) > 0;
+
+
+        public static string ToJsonMs<T>(this T log) => JsonSerializer.Serialize(log, _applicationInsightsJsonSettings);
+
+        private static readonly JsonSerializerOptions _applicationInsightsJsonSettings = new()
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            Converters = { new JsonStringEnumConverter() },
+            ReferenceHandler = ReferenceHandler.IgnoreCycles
+        };
+
     }
 }
